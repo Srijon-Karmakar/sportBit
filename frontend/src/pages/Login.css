@@ -1,0 +1,254 @@
+
+
+
+ /* update 3(adding email and google direct signup) */
+ .login-page {
+  /* position: relative; */
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, #007f00, #68e04a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('/path-to-your-player-image.png'); /* Add your image path */
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+
+
+
+.login-container {
+  background: rgba(255, 255, 255, 0.416);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.login-toggle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-toggle button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background-color: #0f0f0f;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-right: 0.5rem;
+}
+
+.login-toggle button.active {
+  background-color: #1e7e34;
+  color: white;
+}
+
+.login-btn {
+  padding: 0.6rem;
+  background-color: #d8f30eef;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: #0f0f0f ;
+}
+.login-btn:hover {
+  background-color: #2854e6;
+  color: white;
+}
+
+input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: aliceblue;
+  color: black;
+}
+
+.social-signup {
+  text-align: center;
+}
+
+.social-signup p {
+  margin: 0.5rem 0;
+}
+
+.google-btn,
+.facebook-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.google-btn {
+  background-color: #db4437;
+  color: white;
+}
+
+.facebook-btn {
+  background-color: #3b5998;
+  color: white;
+}
+
+.home-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+#homeIcon{
+  height: 25px;
+}
+
+/* role base ui  */
+/* .role-selection {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem ;
+  gap: 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #0f0f0f;
+  background-color: #00000021;
+  border-radius: 100px;
+}
+
+.role-selection input {
+  margin-right: 0.5rem;
+} */
+
+/* role tabs  */
+.role-tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.role-tab {
+  color:rgb(50, 50, 50);
+  flex: 1;
+  padding: 10px;
+  background: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  /* border-radius: 8px 8px 0 0; */
+  /* border-radius: 50px 0px 0px 50px; */
+  transition: 0.3s;
+}
+
+.role-tab.active {
+  background: #207f3c;
+  color: rgb(176, 255, 166);
+}
+
+.image-box img {
+  height: 800px;
+  object-fit: contain;
+}
+
+/* forget password */
+.forgot-password-link {
+  color: #ff0000;
+  cursor: pointer;
+  /* text-decoration: underline; */
+  display: block;
+  margin-top: 10px;
+}
+
+.forgot-password-link:hover {
+  color: #af5400;
+}
+
+/* role dropdown */
+.input-group{
+  color: white;
+  border: none;
+}
+
+/* popup */
+.page-background {
+  background: url('..') no-repeat center center fixed;
+  /* background-color: #d90000; */
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-popup {
+  width: 300px;
+  margin: 50% auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #ffffff8a;
+  text-align: center;
+}
+
+.login-popup h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+.login-popup form input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-popup form button {
+  width: 90%;
+  padding: 10px;
+  background-color: #8c8f00;
+  color: rgb(242, 255, 123);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.login-popup form button:hover {
+  background-color: #6aae37;
+  color: #004e00;
+}
+
+.login-popup p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-link {
+  color: #007bff;
+  cursor: pointer;
+  /* text-decoration: underline; */
+}
+
+.signup-link:hover {
+  color: #269000;
+}

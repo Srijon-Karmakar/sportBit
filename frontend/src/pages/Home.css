@@ -1,0 +1,264 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.home {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #44c620, #1a770e);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 0;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: yellow;
+}
+
+nav a, nav button {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.home-body {
+  display: flex;
+  /* flex: 1; */
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 0 40px; */
+  padding: 0% 8%;
+  height: 100vh;
+  /* position: relative;top: -80px; */
+}
+
+.text-content {
+  padding: 0;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh; 
+  position: relative;top: -80px;
+}
+
+.text-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.text-content h1 span {
+  color: black;
+}
+
+.text-content p {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.buttons button {
+  margin-right: 15px;
+  background: yellow;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 60px;
+  margin-bottom: 10px;
+}
+
+.tutorial-btn {
+  margin-top: 20px;
+  background: yellow;
+  color: black;
+  display: inline-block;
+  padding: 10px 30px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 13rem;
+}
+
+.image-box img {
+  height: 400px;
+  /* object-fit: contain; */
+}
+#homeplayer{
+  height: 800px;
+  position: relative;
+  left: -10%;
+}
+
+/* login button dropdown */
+/* Dropdown Menu */
+/* Dropdown Menu */
+.login-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.login-button {
+  background-color: #007bff00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-button:hover {
+  background-color: #abae0093;
+  border-radius: 100px;
+  color: rgb(251, 255, 44);
+}
+
+/* .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.528);
+  color: rgb(253, 0, 0);
+  border: .1px solid #00000020;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.146);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+} */
+
+.dropdown-menu {
+  position: absolute;
+  top: 140%; /* Adjusted to add spacing between the button and the dropdown */
+  left: -100%; /* Center align the dropdown relative to the button */
+  /* transform: translateX(-50%); */
+  background: rgba(0, 0, 0, 0.367); /* Slightly darker background for better visibility */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(0px, -10px); /* Smooth slide-down effect */
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  min-width: 200px; 
+  text-align: center; /* Center-aligns the text inside the dropdown */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  padding: 10px 0; /* Add padding inside the dropdown */
+}
+
+
+.login-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  /* transform: translateY(-50%, 0); */
+  transform: translateY(0);
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 90%;
+  padding: 10px;
+  background: none;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.dropdown-menu button:hover {
+  background: rgba(255, 255, 255, 0); /* Subtle hover effect */
+  color: yellow;
+  border-radius: 5px;
+}
+
+/* watermark */
+.watermark {
+  /* position: fixed; */
+  position: relative;
+  top: 100%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  z-index: 0; /* Ensure it stays in the background */
+  pointer-events: none; /* Prevent interaction with the watermark */
+  user-select: none; /* Prevent text selection */
+}
+.watermark img {
+  /* max-width: 500px;  */
+  width: 100%;
+  height: auto;
+}
+#homeplayer-watermark {
+  /* position: absolute;
+  top: -90%;
+  left: 140%; */
+  position: fixed; /* Use fixed positioning to keep it relative to the viewport */
+  bottom: 20%; /* Move it upward from the bottom */
+  left: 50%; /* Center it horizontally */
+  transform: translate(34%, 46%); 
+
+  /* transform: translate(-50%, -50%); */
+  z-index: 0; /* Ensure it stays in the background */
+  pointer-events: none; /* Prevent interaction with the watermark */
+  user-select: none; /* Prevent text selection */
+  height: 1700px; width:auto;
+  opacity: 10%;
+}
+#text-watermark {
+  position: fixed;
+  top: 15%;
+  left: 100%;
+  transform: translate(-49%, -55%);
+  z-index: -2; /* Ensure it stays in the background */
+  pointer-events: none; /* Prevent interaction with the watermark */
+  user-select: none; /* Prevent text selection */
+  height: 800px; width:auto;
+  opacity: 10%;
+}
+
+
