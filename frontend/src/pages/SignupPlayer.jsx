@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './Signup.css';
 
@@ -14,6 +15,9 @@ const SignupPlayer = () => {
     weight: '',
   });
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -36,6 +40,8 @@ const SignupPlayer = () => {
         weight: formData.weight,
       });
       alert(response.data.message);
+      const redirectPath = location.state?.from || '/';
+      navigate(redirectPath);
     } catch (error) {
       alert(error.response?.data?.message || 'Signup failed');
     }

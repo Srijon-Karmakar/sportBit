@@ -27,7 +27,6 @@ const playerSchema = new mongoose.Schema({
 status: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Performance',
-    unique: true,
   }
   
 });

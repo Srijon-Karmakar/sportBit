@@ -1,23 +1,41 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Login.css';
 
 const LoginManager = () => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/manager/login', {
+        email: formData.email,
+        password: formData.password,
+      });
+      alert(response.data.message);
+      localStorage.setItem('token', response.data.token);
+       const redirectPath = location.state?.from || '/palyerDash';
+      navigate(redirectPath);
+    } catch (error) {
+      alert(error.response?.data?.message || 'Login failed');
+    }
+  };
 
   return (
     <div className="login-popup">
       <h2>Login as Manager</h2>
-      <form>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
+      <form onSubmit={handleSubmit}>
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
         <button type="submit">Login</button>
       </form>
-      <p>
-        <span className="forgot-password-link" onClick={() => navigate('/forgot-password')}>
-          Forgot Password?
-        </span>
-      </p>
       <p>
         Don't have an account?{' '}
         <span className="signup-link" onClick={() => navigate('/signup/manager')}>

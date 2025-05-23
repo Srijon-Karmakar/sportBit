@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import './Login.css';
 
 const LoginPlayer = () => {
@@ -9,6 +9,7 @@ const LoginPlayer = () => {
     password: '',
   });
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +24,8 @@ const LoginPlayer = () => {
       });
       alert(response.data.message);
       localStorage.setItem('token', response.data.token); // Save the token for authentication
-      navigate('/player/dashboard'); // Redirect to the player dashboard
+       const redirectPath = location.state?.from || '/';
+      navigate(redirectPath);
     } catch (error) {
       alert(error.response?.data?.message || 'Login failed');
     }

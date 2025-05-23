@@ -1,10 +1,13 @@
 import Player from '../models/Player.model.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Signup Controller
 export const signupPlayer = async (req, res) => {
   try {
+    
     const { name, email, password, phone_number, position, height, weight } = req.body;
 
     // Check if the email already exists
@@ -31,6 +34,7 @@ export const signupPlayer = async (req, res) => {
     await newPlayer.save();
     res.status(201).json({ message: 'Player registered successfully', player: newPlayer });
   } catch (error) {
+    
     res.status(500).json({ error: error.message });
   }
 };
@@ -38,6 +42,7 @@ export const signupPlayer = async (req, res) => {
 // Login Controller
 export const loginPlayer = async (req, res) => {
   try {
+    console.log('Login attempt:', req.body);
     const { email, password } = req.body;
 
     // Check if the player exists
@@ -57,6 +62,8 @@ export const loginPlayer = async (req, res) => {
 
     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {
+    console.error('Login error:', error);
+
     res.status(500).json({ error: error.message });
   }
 };

@@ -19,77 +19,61 @@
 
 // update 
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import './Signup.css';
 
 const SignupManager = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
+    phone: '',
+    club_id: '',
   });
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-    // Add signup logic here (e.g., API call)
-    alert('Signup successful!');
-  };
-
-  const handleGoogleSignup = () => {
-    // Add Google signup logic here
-    alert('Signup with Google clicked!');
+    try {
+      const response = await axios.post('http://localhost:5000/manager/signup', {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        phone: formData.phone,
+        club_id: formData.club_id,
+      });
+      alert(response.data.message);
+       const redirectPath = location.state?.from || '/palyerDash';
+      navigate(redirectPath);
+    } catch (error) {
+      alert(error.response?.data?.message || 'Signup failed');
+    }
   };
 
   return (
     <div className="signup-popup">
       <h2>Signup as Manager</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Re-type Password"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
+        <input type="text" name="name" placeholder="Name" onChange={handleChange} required />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+        <input type="password" name="confirmPassword" placeholder="Re-type Password" onChange={handleChange} required />
+        <input type="text" name="phone" placeholder="Phone Number" onChange={handleChange} />
+        <input type="text" name="club_id" placeholder="Club ID" onChange={handleChange} required />
         <button type="submit">Signup</button>
       </form>
-      <p>Or</p>
-      <button className="google-signup-btn" onClick={handleGoogleSignup}>
-        Signup with Google
-      </button>
     </div>
   );
 };

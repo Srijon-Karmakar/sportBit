@@ -1,95 +1,65 @@
-// import React from 'react';
-// import './Signup.css';
-
-// const SignupClub = () => {
-//   return (
-//     <div className="signup-popup">
-//       <h2>Signup as Club</h2>
-//       <form>
-//         <input type="text" placeholder="Club Name" />
-//         <input type="email" placeholder="Email" />
-//         <input type="password" placeholder="Password" />
-//         <button type="submit">Signup</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default SignupClub;
-
-// update 
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import './Signup.css';
 
 const SignupClub = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    club_name: '',
     email: '',
     password: '',
     confirmPassword: '',
+    location: '',
+    establish_date: '',
+    phone_number: '',
+    description: '',
   });
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-    // Add signup logic here (e.g., API call)
-    alert('Signup successful!');
-  };
-
-  const handleGoogleSignup = () => {
-    // Add Google signup logic here
-    alert('Signup with Google clicked!');
+    try {
+      const response = await axios.post('http://localhost:5000/club/signup', {
+        club_name: formData.club_name,
+        email: formData.email,
+        password: formData.password,
+        location: formData.location,
+        establish_date: formData.establish_date,
+        phone_number: formData.phone_number,
+        description: formData.description,
+      });
+      alert(response.data.message);
+       const redirectPath = location.state?.from || '/palyerDash';
+      navigate(redirectPath);
+    } catch (error) {
+      alert(error.response?.data?.message || 'Signup failed');
+    }
   };
 
   return (
     <div className="signup-popup">
       <h2>Signup as Club</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Re-type Password"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
+        <input type="text" name="club_name" placeholder="Club Name" onChange={handleChange} required />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+        <input type="password" name="confirmPassword" placeholder="Re-type Password" onChange={handleChange} required />
+        <input type="text" name="location" placeholder="Location" onChange={handleChange} />
+        <input type="date" name="establish_date" placeholder="Establish Date" onChange={handleChange} />
+        <input type="text" name="phone_number" placeholder="Phone Number" onChange={handleChange} />
+        <input type="text" name="description" placeholder="Description" onChange={handleChange} />
         <button type="submit">Signup</button>
       </form>
-      <p>Or</p>
-      <button className="google-signup-btn" onClick={handleGoogleSignup}>
-        Signup with Google
-      </button>
     </div>
   );
 };

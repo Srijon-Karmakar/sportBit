@@ -7,7 +7,14 @@ const clubSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  
+  club_name: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
   manager: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Manager', // Reference to the Manager schema

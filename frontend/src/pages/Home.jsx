@@ -1,20 +1,21 @@
 
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Home.css';
 import Sidebar from '../components/Sidebar';
 import watermarkImage from '../assets/Watermark.png';
 
 const Home = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="home">
-      
-     <div className="watermark">
-     <img id='homeplayer-watermark' src="/Homeplayer.png" alt="player" />
-     <img id='text-watermark' src={watermarkImage} alt="Watermark" />
+
+      <div className="watermark">
+        <img id='homeplayer-watermark' src="/Homeplayer.png" alt="player" />
+        <img id='text-watermark' src={watermarkImage} alt="Watermark" />
       </div>
       <header className="home-header">
         {/* <div className="logo"> Sport <span>Bit</span></div> */}
@@ -29,10 +30,14 @@ const Home = () => {
           <div className="login-dropdown">
             <button className="login-button">Login</button>
             <div className="dropdown-menu">
-              <button onClick={() => navigate('/login/player')}>Login as Player</button>
-              <button onClick={() => navigate('/login/club')}>Login as Club</button>
-              <button onClick={() => navigate('/login/manager')}>Login as Manager</button>
-              <button onClick={() => navigate('/login/admin')}>Login as Admin</button>
+              <button
+                onClick={() => navigate('/login/player', { state: { from: location.pathname } })}
+              >
+                Login as Player
+              </button>
+              <button onClick={() => navigate('/login/club', { state: { from: location.pathname } })}>Login as Club</button>
+              <button onClick={() => navigate('/login/manager', { state: { from: location.pathname } })}>Login as Manager</button>
+              <button onClick={() => navigate('/login/admin', { state: { from: location.pathname } })}>Login as Admin</button>
             </div>
           </div>
         </nav>
